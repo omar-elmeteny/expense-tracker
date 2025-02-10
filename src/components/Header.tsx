@@ -3,29 +3,28 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+    const navigate = useNavigate();
     return (
-        <Navbar className="navbar navbar-expand-lg py-5 navbar-dark bg-dark" sticky='top'>
+        <Navbar expand="lg" className="navbar-dark bg-dark" sticky='top'>
             <Container>
-                <Navbar.Brand>
-                    <Link to="/" className="navbar-brand fs-1 mx-3 text-light">
-                        Expense Tracker
-                    </Link>
+                <Navbar.Brand onClick={() => navigate("/")}>
+                    Expense Tracker
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls='basic-navbar-nav' />
-                <Navbar.Collapse id='basic-navbar-nav'>
-                    <Nav className="ms-auto " id="navbarNav">
-                        <NavLink className="nav-link fs-4 mx-2 text-light text-decoration-none" to="/">
+                <Navbar.Toggle aria-controls='basic-navbar-nav' className='mb-2' />
+                <Navbar.Collapse id='basic-navbar-nav' className="navbar-dark bg-dark">
+                    <Nav className="me-auto " id="navbarNav">
+                        <Nav.Link onClick={() => navigate("/")}>
                             Home
-                        </NavLink>
-                        <NavLink className="nav-link fs-4 mx-2 text-light text-decoration-none" to="/expense-form">
+                        </Nav.Link>
+                        <Nav.Link onClick={() => navigate("/add-expense")}>
                             Add Expense
-                        </NavLink>
-                        <NavLink className="nav-link fs-4 mx-2 text-light text-decoration-none" to="/expense-list">
+                        </Nav.Link>
+                        <Nav.Link onClick={() => navigate("/expense-list")}>
                             Expenses List
-                        </NavLink>
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

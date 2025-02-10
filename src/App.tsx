@@ -7,7 +7,7 @@ import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Expense from './utils/expense';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import ExpenseList from './components/ExpenseList';
 
@@ -21,11 +21,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
-  
+
   const addExpense = (expense: Expense) => {
-      setExpenses((prevState: Expense[]) => {
-          return [...prevState, expense];
-      });
+    setExpenses((prevState: Expense[]) => {
+      return [...prevState, expense];
+    });
   }
 
   const deleteExpense = (id: string) => {
@@ -34,21 +34,21 @@ function App() {
     });
   }
   return (
-    <div className='flex flex-col min-h-screen'>
-    <Router>
-      <Header />
-      <main className='flex-grow'>
-      <div className="max-w-7xl mx-auto px-4"> 
-      <Routes>
-        <Route path='/' element={<HomePage expenses={expenses} deleteExpense={deleteExpense}/>} />
-        <Route path='/expense-form' element={<ExpenseForm addNewExpense={addExpense} />} />
-        <Route path='/expense-list' element={<ExpenseList expenses={expenses} deleteExpense={deleteExpense}/>}/>
-      </Routes>
-      </div>
-      </main>
-      <Footer />
-    </Router>
-    </div>
+    <>
+      <Router>
+        <Header />
+        <main>
+          <div className="container">
+            <Routes>
+              <Route path='/' element={<HomePage expenses={expenses} deleteExpense={deleteExpense} />} />
+              <Route path='/add-expense' element={<ExpenseForm addNewExpense={addExpense} />} />
+              <Route path='/expense-list' element={<ExpenseList expenses={expenses} deleteExpense={deleteExpense} />} />
+            </Routes>
+          </div>
+        </main>
+        <Footer />
+      </Router>
+    </>
   )
 }
 

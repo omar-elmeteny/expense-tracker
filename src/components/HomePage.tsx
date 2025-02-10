@@ -22,7 +22,7 @@ function HomePage(props: ExpenseContextType) {
                 )}
             </div>
             <div className="d-flex justify-content-center align-items-center mt-5" >
-                <button className="btn btn-primary w-50 btn-lg mx-5 px-20 py-4 fs-3" onClick={() => navigate("/expense-form")}>Add Expense</button>
+                <button className="btn btn-primary w-50 btn-lg mx-5 px-20 py-4 fs-3" onClick={() => navigate("/add-expense")}>Add Expense</button>
                 <button className="btn btn-secondary w-50 btn-lg mx-5 px-20 py-4 fs-3" onClick={() => navigate("/expense-list")}>View Expenses</button>
             </div>
         </div>

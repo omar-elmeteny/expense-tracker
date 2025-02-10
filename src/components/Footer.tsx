@@ -3,7 +3,7 @@
 function Footer() {
     return (
         <footer className="bg-dark text-light text-center py-4 position-absolute bottom-0 w-100">
-            &copy; 2025 Expense Tracker. All rights reserved.
+            &copy; 2025 Omar El-Meteny. All rights reserved.
         </footer>
     );
 }
