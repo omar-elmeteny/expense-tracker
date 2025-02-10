@@ -1,4 +1,4 @@
-import{ createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import{ createContext, useContext } from 'react';
 import Expense from '../utils/expense';
 
 export interface ExpenseContextType {

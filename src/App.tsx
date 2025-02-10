@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
 import ExpenseForm from './components/ExpenseForm';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import Expense from './utils/expense';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import ExpenseList from './components/ExpenseList';
