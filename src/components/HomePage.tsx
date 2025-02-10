@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Expense from "../utils/expense";
 import ExpenseCard from "./ExpenseCard";
 import ExpenseContextType from "../utils/expenseContext";
-import styles from "../utils/styles";
 
 function HomePage(props: ExpenseContextType) {
     const navigate = useNavigate();
@@ -14,9 +13,9 @@ function HomePage(props: ExpenseContextType) {
         .slice(0, 4);
     return (
         <div className="container mt-4">
-            <h1 className="display-3 text-center fw-bold text-secondary">Welcome to Expense Tracker!</h1>
-            <h3 className="text-start fw-bold text-dark mt-5">Most Expensive</h3>
-            <div style={styles.gridContainer}>
+            <h1 className="text-center">Welcome to Expense Tracker!</h1>
+            {topExpenses.length > 0 && <h3 className="text-center my-4">Top Expenses</h3> }
+            <div className="d-flex justify-content-around flex-wrap justify-content-start">
                 {topExpenses.map((expense: Expense) =>
                     <ExpenseCard key={expense.id} id={expense.id} name={expense.name} amount={expense.amount} category={expense.category} isDelete={false} deleteExpense={props.deleteExpense} />
                 )}

@@ -1,0 +1,57 @@
+$primary: #2B7A78;
+$secondary: #3A4F49;
+$light: #DEF2F1;
+$dark: #17252A;
+$basic: #FEFFFF;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.card-custom {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    margin: 2em;
+    width: 350px;
+    max-width: 90%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header-custom {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--bs-dark);
+        margin-bottom: 10px;
+    }
+
+    .card-body-custom {
+        font-size: 16px;
+        color: var(--bs-primary);
+    }
+    
+    .card-footer-custom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+        margin-top: 10px;
+        color: var(--bs-light);
+    }
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.error {
+    color: $danger;
+}
+

@@ -20,15 +20,15 @@ function ExpenseList(props: ExpenseContextType) {
 
     const categories = ["All", ...new Set(props.expenses.map(expense => expense.category))];
 
-    const filteredExpenses = selectedCategory === "All" 
-        ? props.expenses 
+    const filteredExpenses = selectedCategory === "All"
+        ? props.expenses
         : props.expenses.filter(expense => expense.category === selectedCategory);
 
 
     return (
         <div className="container">
-            <h1 className="display-5 text-center fw-bold text-secondary">Expenses List</h1>
-            {!isEmpty &&<div className="d-flex justify-content-end">
+            <h1 className="text-center mt-4">Expenses List</h1>
+            {!isEmpty && <div className="d-flex justify-content-end">
                 <label className="text-dark me-2 mt-1 form-label">Filter by Category:</label>
                 <select
                     className="form-select w-auto d-inline"
@@ -47,13 +47,15 @@ function ExpenseList(props: ExpenseContextType) {
                     <ExpenseCard key={expense.id} id={expense.id} name={expense.name} amount={expense.amount} category={expense.category} isDelete={false} deleteExpense={props.deleteExpense} />
                 )}
             </div> */}
-            {!isEmpty && <table className="table table-striped">
+            {!isEmpty && <table className="table table-striped mt-2">
                 <thead>
-                    <th>#</th>
-                    <th className="w-50">Name</th>
-                    <th className="text-end">Amount</th>
-                    <th>Category</th>
-                    <th></th>
+                    <tr>
+                        <th>#</th>
+                        <th className="w-50">Name</th>
+                        <th className="text-end">Amount</th>
+                        <th>Category</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
                     {filteredExpenses.map((expense: Expense, index: number) => (
