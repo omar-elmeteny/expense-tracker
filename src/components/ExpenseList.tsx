@@ -65,7 +65,7 @@ function ExpenseList(props: ExpenseContextType) {
                             <td className="text-end">E£{formatCurrency(expense.amount)}</td>
                             <td>{expense.category.charAt(0).toUpperCase() + expense.category.slice(1).toLowerCase()}</td>
                             <td>
-                                <button className="btn btn-danger" onClick={() => props.deleteExpense(expense.id)}>Delete</button>
+                                <button className="btn btn-outline-danger" onClick={() => props.deleteExpense(expense.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

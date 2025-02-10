@@ -7,11 +7,11 @@ function ExpenseCard(props: { id: string, name: string, amount: number, category
     }
     return (
         <div className="card-custom"> 
-            <h1 className="card-header-custom">{props.name.charAt(0).toUpperCase() + props.name.slice(1).toLowerCase()}</h1>
+            <h1 className="card-header-custom">{props.name}</h1>
             <p className="card-body-custom">Amount: E£{props.amount}</p>
             <div className="card-footer-custom">
-                <span className="text-muted">Category: {props.category.charAt(0).toUpperCase() + props.category.slice(1).toLowerCase()}</span>
-                <button className="btn btn-primary" onClick={handleDelete} style={{visibility: !props.isDelete ? "visible" : "hidden"}}>Delete</button>
+                <span className="text-muted">Category: {props.category}</span>
+                <button className="btn btn-outline-danger" onClick={handleDelete} style={{visibility: props.isDelete ? "visible" : "hidden"}}>Delete</button>
             </div>
         </div>
     );

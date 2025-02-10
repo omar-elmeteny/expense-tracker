@@ -17,7 +17,7 @@ function HomePage(props: ExpenseContextType) {
             {topExpenses.length > 0 && <h3 className="text-center my-4">Top Expenses</h3> }
             <div className="d-flex justify-content-around flex-wrap justify-content-start">
                 {topExpenses.map((expense: Expense) =>
-                    <ExpenseCard key={expense.id} id={expense.id} name={expense.name} amount={expense.amount} category={expense.category} isDelete={false} deleteExpense={props.deleteExpense} />
+                    <ExpenseCard key={expense.id} id={expense.id} name={expense.name} amount={expense.amount} category={expense.category} isDelete={true} deleteExpense={props.deleteExpense} />
                 )}
             </div>
             <div className="d-flex justify-content-center align-items-center mt-5" >
