@@ -3,9 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useExpenseContext } from "../utils/expenseContext";
 
 
-function ExpenseForm({ addNewExpense }: any) {
+function ExpenseForm() {
+    const expenseContext = useExpenseContext();
     const validationSchema = Yup.object().shape({
         name: Yup.string().required()
             .min(2)
@@ -28,9 +30,11 @@ function ExpenseForm({ addNewExpense }: any) {
             validationSchema={validationSchema}
             validateOnMount
             onSubmit={(values, { resetForm }) => {
-                addNewExpense({
+                expenseContext.addExpense({
                     id: uuidv4(),
-                    ...values
+                    name: values.name,
+                    amount: parseFloat(values.amount),
+                    category: values.category
                 });
                 resetForm();
                 navigate("/expense-list");

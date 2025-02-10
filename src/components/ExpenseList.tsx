@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Expense from "../utils/expense";
-import ExpenseContextType from "../utils/expenseContext";
+import { useExpenseContext } from "../utils/expenseContext";
 
 function formatCurrency(amount: number) {
     return new Intl.NumberFormat("en-US", {
@@ -10,19 +10,20 @@ function formatCurrency(amount: number) {
     }).format(amount);
 }
 
-function ExpenseList(props: ExpenseContextType) {
+function ExpenseList() {
+    const expenseContext = useExpenseContext();
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
     useEffect(() => {
-        setIsEmpty(props.expenses.length === 0);
-    }, [props.expenses]);
+        setIsEmpty(expenseContext.expenses.length === 0);
+    }, [expenseContext.expenses]);
 
-    const categories = ["All", ...new Set(props.expenses.map(expense => expense.category))];
+    const categories = ["All", ...new Set(expenseContext.expenses.map(expense => expense.category))];
 
     const filteredExpenses = selectedCategory === "All"
-        ? props.expenses
-        : props.expenses.filter(expense => expense.category === selectedCategory);
+        ? expenseContext.expenses
+        : expenseContext.expenses.filter(expense => expense.category === selectedCategory);
 
 
     return (
@@ -65,7 +66,7 @@ function ExpenseList(props: ExpenseContextType) {
                             <td className="text-end">E£{formatCurrency(expense.amount)}</td>
                             <td>{expense.category.charAt(0).toUpperCase() + expense.category.slice(1).toLowerCase()}</td>
                             <td>
-                                <button className="btn btn-outline-danger" onClick={() => props.deleteExpense(expense.id)}>Delete</button>
+                                <button className="btn btn-outline-danger" onClick={() => expenseContext.deleteExpense(expense.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

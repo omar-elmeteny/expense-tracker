@@ -1,9 +1,12 @@
 // import React from "react";
 
-function ExpenseCard(props: { id: string, name: string, amount: number, category: string, isDelete: boolean, deleteExpense: (id: string) => void }) {
+import { useExpenseContext } from "../utils/expenseContext";
+
+function ExpenseCard(props: { id: string, name: string, amount: number, category: string, isDelete: boolean }) {
+    const expenseContext = useExpenseContext();
     const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        props.deleteExpense(props.id);
+        expenseContext.deleteExpense(props.id);
     }
     return (
         <div className="card-custom"> 

@@ -8,42 +8,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import ExpenseList from './components/ExpenseList';
 import { Modal } from 'react-bootstrap';
+import { useExpenseContext } from './utils/expenseContext';
 
 
 function App() {
-  const [expenses, setExpenses] = useState<Expense[]>(() => {
-    const savedExpenses = localStorage.getItem("expenses");
-    return savedExpenses ? JSON.parse(savedExpenses) : [];
-  });
+  const expenseContext = useExpenseContext();
 
-  const [expenseToDelete, setExpenseToDelete] = useState<string | null>(null);
-
-  useEffect(() => {
-    localStorage.setItem("expenses", JSON.stringify(expenses));
-  }, [expenses]);
-
-  const addExpense = (expense: Expense) => {
-    setExpenses((prevState: Expense[]) => {
-      return [...prevState, expense];
-    });
-  }
-
-  const deleteExpense = (id: string) => {
-    setExpenseToDelete(id);
-  }
-
-  const actualDeleteExpense = () => {
-    setExpenses((prevState: Expense[]) => {
-      return prevState.filter((expense) => expense.id !== expenseToDelete);
-    });
-    setExpenseToDelete(null);
-  }
   return (
     <>
       <Router>
         <Header />
 
-        <Modal show={expenseToDelete !== null} onHide={() => setExpenseToDelete(null)}>
+        <Modal show={expenseContext.expenseToDelete !== null} onHide={() => expenseContext.setExpenseToDelete(null)}>
           <Modal.Header>
             <Modal.Title>Delete Confirmation</Modal.Title>
           </Modal.Header>
@@ -51,16 +27,16 @@ function App() {
             Are you sure you want to delete this expense? This action cannot be undone.
           </Modal.Body>
           <Modal.Footer>
-            <button className="btn btn-secondary" onClick={() => setExpenseToDelete(null)}>Cancel</button>
-            <button className="btn btn-danger" onClick={actualDeleteExpense}>Delete Expense</button>
+            <button className="btn btn-secondary" onClick={() => expenseContext.setExpenseToDelete(null)}>Cancel</button>
+            <button className="btn btn-danger" onClick={expenseContext.actualDeleteExpense}>Delete Expense</button>
           </Modal.Footer>
         </Modal>
         <main>
           <div className="container">
             <Routes>
-              <Route path='/' element={<HomePage expenses={expenses} deleteExpense={deleteExpense} />} />
-              <Route path='/add-expense' element={<ExpenseForm addNewExpense={addExpense} />} />
-              <Route path='/expense-list' element={<ExpenseList expenses={expenses} deleteExpense={deleteExpense} />} />
+              <Route path='/' element={<HomePage />} />
+              <Route path='/add-expense' element={<ExpenseForm />} />
+              <Route path='/expense-list' element={<ExpenseList />} />
             </Routes>
           </div>
         </main>
