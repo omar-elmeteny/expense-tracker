@@ -72,7 +72,7 @@ function ExpenseList() {
                     ))}
                 </tbody>
             </table>}
-            {isEmpty ? <h3 className="text-center text-secondary mt-5 p-5">List is Empty</h3> : <h3 className="text-center fw-bold text-secondary mt-4">Total amount: E£{formatCurrency(filteredExpenses.reduce((sum, expense) => Number(sum + expense.amount), 0.0))}</h3>}
+            {isEmpty ? <h3 className="text-center text-secondary mt-5 p-5">List is Empty</h3> : <h3 className="text-center text-secondary mt-4">Total amount: E£{formatCurrency(filteredExpenses.reduce((sum, expense) => Number(sum + expense.amount), 0.0))}</h3>}
         </div>
 
     );
